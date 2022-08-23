@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+
+import Comp from './components/Comp';
 
 function App() {
+    const[num, setNum] = useState(2)
+    const[text, setText] = useState('text')
+    function incNum(){
+        setNum( num + 1)
+    }
+    function changeText(t){
+        setText(t)
+    }
   return (
+    <div>
+
+      <Comp>
+
+      </Comp>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        {num}
+    </div>
+    <h1>{text}</h1>
+    <button onClick={incNum}>+</button>
+    <input value={text} onChange={event => changeText(event.target.value)}/>
     </div>
   );
 }

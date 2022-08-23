@@ -1,0 +1,17 @@
+.avatarReview {
+  width: 50%;
+  height: 20rem;
+  background-color: aquamarine;
+}
+
+.avatarRedactorWrap {
+  display: flex;
+}
+
+.tools {
+  width: 50%;
+  height: 20rem;
+  background-color: #2f7e64;
+}
+
+/*# sourceMappingURL=Comp.module.css.map */
