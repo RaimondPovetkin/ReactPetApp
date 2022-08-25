@@ -8,8 +8,6 @@ function Comp() {
             id: 1,
             range: 50,
             strokeWidth: 1,
-            // offsetX: 0,
-            // offsetY: 0,
         },
         {
             name: "nose",
@@ -35,6 +33,7 @@ function Comp() {
             strokeWidth: 1,
             offsetX: 0,
             offsetY: 0,
+            distance: 25,
         },
         {
             name: "mouth",
@@ -58,7 +57,17 @@ function Comp() {
                     id: 2,
                     svgMax: '<path d="M 208.989485 , 140.322922 q1.018012-61.080749-2.036025-86.531062c-3.054037-25.450313-78.363186-51.918633-78.386962,24.4323-.015783,50.6823-2.547162,55.480498-4.07205,63.116775q-75.950478,39.502284-2.036025,94.675162c55.245646,41.23769,95.544408-64.245536,86.531062-95.693175Z" transform="matrix( 1.163359 0 0 0.601194 -28.120774 67.61604 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>',
                     svgMin: '<path d="M 208.989485 , 140.322922 q1.018012-61.080749-2.036025-86.531062c-3.054037-25.450313-78.363186-51.918633-78.386962,24.4323-.015783,50.6823-2.547162,55.480498-4.07205,63.116775q-75.950478,39.502284-2.036025,94.675162c55.245646,41.23769,95.544408-64.245536,86.531062-95.693175Z" transform="matrix( 0.372544 0 0 0.601194 92.960148 67.61604 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>'
-                }
+                },
+                {
+                    id: 3,
+                    svgMax: '<path d="M 132.980959 , 152.916638 c-8.977552-19.08632-6.986275-22.008568-6.986275-38.465098c0-42.513567,61.506276-60.810174,90.606415-17.877499c7.241008,10.682967,20.310776,43.695667,22.418596,56.342597c1.28921,7.73526-10.028536,34.836913-13.874324,40.751418-25.273858,38.869112-62.410667,45.362243-84.316186,41.698362-27.576207-10.169817-24.996001-72.398645-7.848226-82.44978" transform="matrix( 0.912264 0 0 0.79757 6.499539 27.030639 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>',
+                    svgMin: '<path d="M 132.980959 , 152.916638 c-8.977552-19.08632-6.986275-22.008568-6.986275-38.465098c0-42.513567,61.506276-60.810174,90.606415-17.877499c7.241008,10.682967,20.310776,43.695667,22.418596,56.342597c1.28921,7.73526-10.028536,34.836913-13.874324,40.751418-25.273858,38.869112-62.410667,45.362243-84.316186,41.698362-27.576207-10.169817-24.996001-72.398645-7.848226-82.44978" transform="matrix( 0.240387 0 0 0.79757 111.634157 27.030639 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>'
+                },
+                {
+                    id: 4,
+                    svgMax: '<path d="M 100.442299 , 133.463856 c-17.882506,8.558172-4.774201,80.252058,0,92.617851c4.39693,11.388613,60.674823,14.279292,72.975373,9.886232c28.28586-10.10209,52.324749-132.321069,43.635059-156.217729-11.10097-30.52766-52.735907-37.075724-79.012237-21.747864-31.11848,18.15245-12.782694,65.454844-37.598195,75.46151" transform="matrix( 0.967581 0 0 0.697076 -0.546043 49.640504 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>',
+                    svgMin: '<path d="M 100.442299 , 133.463856 c-17.882506,8.558172-4.774201,80.252058,0,92.617851c4.39693,11.388613,60.674823,14.279292,72.975373,9.886232c28.28586-10.10209,52.324749-132.321069,43.635059-156.217729-11.10097-30.52766-52.735907-37.075724-79.012237-21.747864-31.11848,18.15245-12.782694,65.454844-37.598195,75.46151" transform="matrix( 0.243401 0 0 0.697076 114.14506 49.640504 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>'
+                },
             ]
         },
         {
@@ -68,19 +77,22 @@ function Comp() {
                     id: 1,
                     svgMax: '<path d="M 137.919793 , 121.79207 c-73.014107,19.153164-92.120931-4.182215-81.017346,28.207928c9.290399,27.100918,58.596479,35.401317,78.923687.000001" transform="matrix( 1.199541 0 0 0.853337 -15.440446 36.727247 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>',
                     svgMin: '<path d="M 137.919793 , 121.79207 c-73.014107,19.153164-92.120931-4.182215-81.017346,28.207928c9.290399,27.100918,58.596479,35.401317,78.923687.000001" transform="matrix( 0.441907 0 0 0.853337 89.052278 36.727249 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>',
-                    offsetRatio: 1
+                    offsetRatioX: 1,
+                    offsetRatioY: 1
                 },
                 {
                     id: 2,
                     svgMax: '<path d="M 137.919793 , 121.79207 c-76.27451,9.601243-120.343819,64.024306-78.073661,93.994459c29.544842,20.94772,65.701401-33.438163,75.980002-65.78653" transform="matrix( 1.244689 0 0 0.853337 -21.667249 35.605509 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>',
                     svgMin: '<path d="M 137.919793 , 121.79207 c-76.27451,9.601243-120.343819,64.024306-78.073661,93.994459c29.544842,20.94772,65.701401-33.438163,75.980002-65.78653" transform="matrix( 0.400766 0 0 0.435781 94.726436 86.880273 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>',
-                    offsetRatio: 1
+                    offsetRatioX: 1,
+                    offsetRatioY: 1
                 },
                 {
                     id: 3,
                     svgMax: '<path d="M 150 , 164.921254 L42.393161,206.740025q-4.543502-65.874246,107.606838-63.022966" transform="matrix( 1.172807 0 0 1 -25.92105 -3.061889 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>',
                     svgMin: '<path d="M 150 , 164.921254 L42.393161,206.740025q-4.543502-65.874246,107.606838-63.022966" transform="matrix( 0.401355 0 0 0.449309 89.79675 75.610467 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>',
-                    offsetRatio: 1
+                    offsetRatioX: 1,
+                    offsetRatioY: 1
                 }
             ]
         },
@@ -89,15 +101,31 @@ function Comp() {
             children: [
                 {
                     id: 1,
-                    svgMax: '<path d="M 128.370671 , 174.737085 q0-.313156,42.190472.313157-27.699629,34.28655-42.190472-.313157Z" transform="matrix( 2.183137 0 0 1.787645 -186.090691 -141.663596 )" fill="#c34c4c" stroke="#000" stroke-width=" 0.6 "/>',
-                    svgMin: '<path d="M 128.370671 , 174.737085 q0-.313156,42.190472.313157-27.699629,34.28655-42.190472-.313157Z" transform="matrix( 0.888094 0 0 1.078384 7.06633 -17.763509 )" fill="#c34c4c" stroke="#000" stroke-width=" 0.6 "/>',
-                    offsetRatio: 1
+                    svgMax: '<path d="M 181.636139 , 177.10198 c-1.12169-2.24337-11.161287-17.266134-12.194574-15.209067-10.12556,20.157956-36.260364,14.813217-36.392314,15.209067-.7,2.10001,20.136703,13.266007,48.586888,0" transform="matrix( 1.515516 0 0 1.475316 -79.836834 -74.571161 )" fill="#fff" stroke="#000" stroke-width=" 0.6 "/>',
+                    svgMin: '<path d="M 181.636139 , 177.10198 c-1.12169-2.24337-11.161287-17.266134-12.194574-15.209067-10.12556,20.157956-36.260364,14.813217-36.392314,15.209067-.7,2.10001,20.136703,13.266007,48.586888,0" transform="matrix( 0.541325 0 0 0.643328 57.089067 71.854778 )" fill="#fff" stroke="#000" stroke-width=" 0.6 "/>',
+                    offsetRatioX: 0.4,
+                    offsetRatioY: 0.3
                 },
                 {
                     id: 2,
-                    svgMax: '<g transform="matrix( 1.394783 0 0 1.036778 -57.097025 -6.470832 )"><path d="M 130.061802 , 180.640078 q21.349269,3.669404,35.026145-11.008218" transform="matrix(1.247624 0 0 1.79573-43.548276-134.981138)" fill="none" stroke="#000" stroke-width=" 0.6 "/><path d="M 174.428252 , 180.171006 Q183.434976,154.386068,155.747642,150" transform="matrix(.776155 0 0 0.561026 33.438584 77.014623)" fill="none" stroke="#3f5787" stroke-width=" 0.6 "/></g>',
-                    svgMin: '<g transform="matrix( 0.416274 0 0 0.408232 84.423643 104.117447 )"><path d="M 130.061802 , 180.640078 q21.349269,3.669404,35.026145-11.008218" transform="matrix(1.247624 0 0 1.79573-43.548276-134.981138)" fill="none" stroke="#000" stroke-width=" 0.6 "/><path d="M 174.428252 , 180.171006 Q183.434976,154.386068,155.747642,150" transform="matrix(.776155 0 0 0.561026 33.438584 77.014623)" fill="none" stroke="#3f5787" stroke-width=" 0.6 "/></g>',
-                    offsetRatio: 0.5
+                    svgMax: '<g transform="matrix( 1.394783 0 0 1.036778 -57.097025 -6.470832 )"><path d="M 130.061802 , 180.640078 q21.349269,3.669404,35.026145-11.008218" transform="matrix(1.247624 0 0 1.79573-43.548276-134.981138)" fill="none" stroke="#000" stroke-width=" 0.6 "/><path d="M 174.428252 , 180.171006 Q183.434976,154.386068,155.747642,150" transform="matrix(.776155 0 0 0.561026 33.438584 77.014623)" fill="none" stroke="#000" stroke-width=" 0.6 "/></g>',
+                    svgMin: '<g transform="matrix( 0.416274 0 0 0.408232 84.423643 104.117447 )"><path d="M 130.061802 , 180.640078 q21.349269,3.669404,35.026145-11.008218" transform="matrix(1.247624 0 0 1.79573-43.548276-134.981138)" fill="none" stroke="#000" stroke-width=" 0.6 "/><path d="M 174.428252 , 180.171006 Q183.434976,154.386068,155.747642,150" transform="matrix(.776155 0 0 0.561026 33.438584 77.014623)" fill="none" stroke="#000" stroke-width=" 0.6 "/></g>',
+                    offsetRatioX: 0.5,
+                    offsetRatioY: 0.25
+                },
+                {
+                    id: 3,
+                    svgMax: '<path d="M 183.51629 , 65.54549 c-14.29641,2.85928-24.60933-18.00996-39.84738-12.93061-3.21425,1.07142-4.48613,6.06947-4.48613,6.06947-3.366577-7.903851-11.924768-7.644494-14.25006-1.58334-5.934589,15.46922,14.693504,12.001305,34.105721,10.619565-18.688127,2.870791-39.221244-2.964172-34.105721,7.581247c4.250409,8.762025,14.910626,6.561661,18.73619,6.640263c13.74214.282352,25.87005-11.649515,39.3196-16.132705" transform="matrix( 1.143037 0 0 0.796075 -25.695148 126.593529 )" fill="#cf4d4d" stroke="#000" stroke-width=" 0.6 "/>',
+                    svgMin: '<path d="M 183.51629 , 65.54549 c-14.29641,2.85928-24.60933-18.00996-39.84738-12.93061-3.21425,1.07142-4.48613,6.06947-4.48613,6.06947-3.366577-7.903851-11.924768-7.644494-14.25006-1.58334-5.934589,15.46922,14.693504,12.001305,34.105721,10.619565-18.688127,2.870791-39.221244-2.964172-34.105721,7.581247c4.250409,8.762025,14.910626,6.561661,18.73619,6.640263c13.74214.282352,25.87005-11.649515,39.3196-16.132705" transform="matrix( 0.336021 0 0 0.330123 92.621334 155.235679 )" fill="#cf4d4d" stroke="#000" stroke-width=" 0.6 "/>',
+                    offsetRatioX: 0.5,
+                    offsetRatioY: 0.4
+                },
+                {
+                    id: 4,
+                    svgMax: '<path d="M 161.453759 , 165.614568 c0-19.85974-41.939035-5.705542-24.653979,14.447822c10.649294,12.416454,27.408129-1.291661,24.653979-15.062391" transform="matrix( 1.689092 0 0 1.068753 -108.314648 9.076806 )" fill="#b6443d" stroke="#000" stroke-width=" 0.6 "/>',
+                    svgMin: '<path d="M 161.453759 , 165.614568 c0-19.85974-41.939035-5.705542-24.653979,14.447822c10.649294,12.416454,27.408129-1.291661,24.653979-15.062391" transform="matrix( 0.420904 0 0 0.280908 78.278735 131.509543 )" fill="#b6443d" stroke="#000" stroke-width=" 0.6 "/>',
+                    offsetRatioX: 0.5,
+                    offsetRatioY: 0.6
                 },
             ]
         },
@@ -108,8 +136,16 @@ function Comp() {
                     id: 1,
                     svgMax: '<path d="M 141.29348 , 137.24661 c-17.98032-1.556401-25.888859,25.247619-7.187341,22.944922c9.675278-1.191306,20.766115-19.435712,7.187341-22.944922" transform="matrix( 1.051575 0 0 1 -4.596268 -14.380222 )" fill="#d2dbf1" stroke="#000" stroke-width=" 0.6 "/>',
                     svgMin: '<path d="M 141.29348 , 137.24661 c-17.98032-1.556401-25.888859,25.247619-7.187341,22.944922c9.675278-1.191306,20.766115-19.435712,7.187341-22.944922" transform="matrix( 0.577191 0 0 0.548883 59.701487 53.287328 )" fill="#d2dbf1" stroke="#000" stroke-width=" 0.6 "/>',
-                    offsetRatio: 0.5
-                }
+                    offsetRatioX: 0.5,
+                    offsetRatioY: 1
+                },
+                {
+                    id: 2,
+                    svgMax: '<path d="M 167.931261 , 128.619659 q0-.034088-17.931261-.034087c.687032,15.59524,14.712025,17.588241,17.931261.034087Z" transform="matrix( 1.423102 0 0 1.832612 -88.191546 -112.196781 )" fill="#d2dbf1" stroke="#000" stroke-width=" 0.6 "/>',
+                    svgMin: '<path d="M 167.931261 , 128.619659 q0-.034088-17.931261-.034087c.687032,15.59524,14.712025,17.588241,17.931261.034087Z" transform="matrix( 0.770901 0 0 1 6.166877 0.142604 )" fill="#d2dbf1" stroke="#000" stroke-width=" 0.6 "/>',
+                    offsetRatioX: 0.5,
+                    offsetRatioY: 1
+                },
             ]
         },
         {
@@ -119,7 +155,8 @@ function Comp() {
                     id: 1,
                     svgMax: '<path d="M 141.29348 , 137.24661 c-17.98032-1.556401-25.888859,25.247619-7.187341,22.944922c9.675278-1.191306,20.766115-19.435712,7.187341-22.944922" transform="matrix( 0.377843 0 0 0.387143 83.805781 75.49052 )" stroke="#000" stroke-width=" 0.6 "/>',
                     svgMin: '<path d="M 141.29348 , 137.24661 c-17.98032-1.556401-25.888859,25.247619-7.187341,22.944922c9.675278-1.191306,20.766115-19.435712,7.187341-22.944922" transform="matrix( 0.199806 0 0 0.204722 108.441118 102.85367 )" stroke="#000" stroke-width=" 0.6 "/>',
-                    offsetRatio: 1
+                    offsetRatioX: 1,
+                    offsetRatioY: 1
                 }
             ]
         },
@@ -128,7 +165,7 @@ function Comp() {
     const [range, setRange] = useState(50)
     const [offsetY, setOffsetY] = useState(0)
     const [offsetX, setOffsetX] = useState(0)
-    const [eyeDistance, setEyeDistance] = useState(25)
+    const [eyeDistance, setDistance] = useState(25)
     const [strokeWidth, setStrokeWidth] = useState(1)
 
     useEffect(() => {
@@ -161,13 +198,14 @@ function Comp() {
             }
         }
         /*смещение по x и y*/
-        let offsetRatio = arrParts.find(item => item.name === name).children.find(item => item.id === avatar.find(item => item.name === name).id).offsetRatio
+        let offsetRatioX = arrParts.find(item => item.name === name).children.find(item => item.id === avatar.find(item => item.name === name).id).offsetRatioX
+        let offsetRatioY = arrParts.find(item => item.name === name).children.find(item => item.id === avatar.find(item => item.name === name).id).offsetRatioY
         for (let i = 0; i < resultArray.length; i++) {
             if(resultArray[i] === 'd="M' && currentOffsetX){
-                resultArray[i+1] = Number(resultArray[i+1]) + Number(currentOffsetX)*offsetRatio
+                resultArray[i+1] = Number(resultArray[i+1]) + Number(currentOffsetX)*offsetRatioX
             }
             if(resultArray[i] === ',' && currentOffsetY){
-                resultArray[i+1] = Number(resultArray[i+1]) + Number(currentOffsetY)*offsetRatio
+                resultArray[i+1] = Number(resultArray[i+1]) + Number(currentOffsetY)*offsetRatioY
             }
         }
         /*обводка*/
@@ -182,44 +220,27 @@ function Comp() {
             if (name === 'eye') {
                 resultArray[2] = Number(resultArray[2]) + Number(avatar.find(item => item.name === 'eye').distance)
             } else if (name === 'pupil') {
-                resultArray[2] = Number(resultArray[2]) + Number(avatar.find(item => item.name === 'eye').distance * 3)
+                resultArray[2] = Number(resultArray[2]) + Number(avatar.find(item => item.name === 'pupil').distance * 4)
             }
         }
         return resultArray.join(' ')
     }
 
-    const setAvatarRange = () => {
-        avatar.find(item => item.name === arrParts[bodyPart].name).range = range
-        setAvatar(avatar)
-        drawAvatar()
-    }
-
-    const setAvatarOffsetX = () => {
-        avatar.find(item => item.name === arrParts[bodyPart].name).offsetX = offsetX
-        setAvatar(avatar)
-        drawAvatar()
-    }
-
-    const setAvatarEyeDistance = () => {
-        avatar.find(item => item.name === 'eye').distance = eyeDistance
-        setAvatar(avatar)
-        drawAvatar()
-    }
-
-    const setAvatarOffsetY = () => {
-        avatar.find(item => item.name === arrParts[bodyPart].name).offsetY = offsetY
-        setAvatar(avatar)
-        drawAvatar()
-    }
-
-    const setAvatarStrokeWidth = () => {
-        avatar.find(item => item.name === arrParts[bodyPart].name).strokeWidth = strokeWidth
+    const changeAvatar = (newValue, nameValue) => {
+        avatar.find(item => item.name === arrParts[bodyPart].name)[nameValue] = newValue
         setAvatar(avatar)
         drawAvatar()
     }
 
     const show = () => {
-        console.log(avatar)
+        for (let itemAvatar of avatar){
+            let maxRabge = arrParts.find(item => item.name === itemAvatar.name).children.length
+            let minRabge = 1
+
+            itemAvatar.id = Math.floor(Math.random() * (maxRabge - minRabge + 1)) + minRabge
+        }
+        setAvatar(avatar)
+        drawAvatar()
     }
 
     const drawAvatar = () => {
@@ -262,6 +283,9 @@ function Comp() {
                                     setBodyPart(index)
                                     setRange(avatar.find(item => item.name === part.name).range)
                                     setStrokeWidth(avatar.find(item => item.name === part.name).strokeWidth)
+                                    setOffsetY(avatar.find(item => item.name === part.name).offsetY)
+                                    setOffsetX(avatar.find(item => item.name === part.name).offsetX)
+                                    setDistance(avatar.find(item => item.name === part.name).distance)
                                 }
                                 }
                             >
@@ -289,7 +313,7 @@ function Comp() {
                            onChange={
                                (event) => {
                                    setRange(event.target.value)
-                                   setAvatarRange()
+                                   changeAvatar(event.target.value,'range')
                                }
                            }
                     >
@@ -306,7 +330,7 @@ function Comp() {
                                    onChange={
                                        (event) => {
                                            setOffsetX(event.target.value)
-                                           setAvatarOffsetX()
+                                           changeAvatar(event.target.value,'offsetX')
                                        }
                                    }
                             >
@@ -316,7 +340,7 @@ function Comp() {
                                    onChange={
                                        (event) => {
                                            setOffsetY(event.target.value)
-                                           setAvatarOffsetY()
+                                           changeAvatar(event.target.value,'offsetY')
                                        }
                                    }
                             >
@@ -331,11 +355,11 @@ function Comp() {
                         :
                         <div>
                             {eyeDistance}
-                            <input type="range" min="20" max="60" value={eyeDistance}
+                            <input type="range" min="17" max="40" value={eyeDistance}
                                    onChange={
                                        (event) => {
-                                           setEyeDistance(event.target.value)
-                                           setAvatarEyeDistance()
+                                           setDistance(event.target.value)
+                                           changeAvatar(event.target.value,'distance')
                                        }
                                    }
                             >
@@ -349,12 +373,12 @@ function Comp() {
                         <div></div>
                         :
                         <div>
-                            {'strokeWidth'}
-                            <input type="range" min="0" max="10" value={strokeWidth}
+                            {'strokeWidth:'+ strokeWidth}
+                            <input type="range" min="0" max="6" value={strokeWidth}
                                    onChange={
                                        (event) => {
                                            setStrokeWidth(event.target.value)
-                                           setAvatarStrokeWidth()
+                                           changeAvatar(event.target.value,'strokeWidth')
                                        }
                                    }
                             >
