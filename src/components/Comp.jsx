@@ -8,6 +8,7 @@ function Comp() {
             id: 1,
             range: 50,
             strokeWidth: 1,
+            color: 'ffdfc4'
         },
         {
             name: "nose",
@@ -25,6 +26,7 @@ function Comp() {
             offsetX: 0,
             offsetY: 0,
             distance: 25,
+            color: 'd2dbf1'
         },
         {
             name: "pupil",
@@ -33,7 +35,7 @@ function Comp() {
             strokeWidth: 1,
             offsetX: 0,
             offsetY: 0,
-            distance: 25,
+            distance: 20,
         },
         {
             name: "mouth",
@@ -68,7 +70,8 @@ function Comp() {
                     svgMax: '<path d="M 100.442299 , 133.463856 c-17.882506,8.558172-4.774201,80.252058,0,92.617851c4.39693,11.388613,60.674823,14.279292,72.975373,9.886232c28.28586-10.10209,52.324749-132.321069,43.635059-156.217729-11.10097-30.52766-52.735907-37.075724-79.012237-21.747864-31.11848,18.15245-12.782694,65.454844-37.598195,75.46151" transform="matrix( 0.967581 0 0 0.697076 -0.546043 49.640504 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>',
                     svgMin: '<path d="M 100.442299 , 133.463856 c-17.882506,8.558172-4.774201,80.252058,0,92.617851c4.39693,11.388613,60.674823,14.279292,72.975373,9.886232c28.28586-10.10209,52.324749-132.321069,43.635059-156.217729-11.10097-30.52766-52.735907-37.075724-79.012237-21.747864-31.11848,18.15245-12.782694,65.454844-37.598195,75.46151" transform="matrix( 0.243401 0 0 0.697076 114.14506 49.640504 )" fill="#ffdfc4" stroke="#000" stroke-width=" 0.6 "/>'
                 },
-            ]
+            ],
+            colors: ['ffdfc4', 'ffcc99', '38160a', '582812', 'f4cd8a', 'f4a481', 'ad6c44']
         },
         {
             name: "nose",
@@ -146,7 +149,8 @@ function Comp() {
                     offsetRatioX: 0.5,
                     offsetRatioY: 1
                 },
-            ]
+            ],
+            colors: ['d2dbf1', 'ffffff', 'e59082']
         },
         {
             name: "pupil",
@@ -188,6 +192,7 @@ function Comp() {
         const currentRange = avatar.find(item => item.name === name).range
         const currentOffsetX = avatar.find(item => item.name === name)?.offsetX
         const currentOffsetY = avatar.find(item => item.name === name)?.offsetY
+        const currentColor = avatar.find(item => item.name === name)?.color
         let resultArray = []
         /*слияние массивов*/
         for (let i = 0; i < array1.length; i++) {
@@ -201,18 +206,25 @@ function Comp() {
         let offsetRatioX = arrParts.find(item => item.name === name).children.find(item => item.id === avatar.find(item => item.name === name).id).offsetRatioX
         let offsetRatioY = arrParts.find(item => item.name === name).children.find(item => item.id === avatar.find(item => item.name === name).id).offsetRatioY
         for (let i = 0; i < resultArray.length; i++) {
-            if(resultArray[i] === 'd="M' && currentOffsetX){
-                resultArray[i+1] = Number(resultArray[i+1]) + Number(currentOffsetX)*offsetRatioX
+            if (resultArray[i] === 'd="M' && currentOffsetX) {
+                resultArray[i + 1] = Number(resultArray[i + 1]) + Number(currentOffsetX) * offsetRatioX
             }
-            if(resultArray[i] === ',' && currentOffsetY){
-                resultArray[i+1] = Number(resultArray[i+1]) + Number(currentOffsetY)*offsetRatioY
+            if (resultArray[i] === ',' && currentOffsetY) {
+                resultArray[i + 1] = Number(resultArray[i + 1]) + Number(currentOffsetY) * offsetRatioY
             }
         }
         /*обводка*/
         let currentStrokeWidth = avatar.find(item => item.name === name).strokeWidth
         for (let i = 0; i < resultArray.length; i++) {
-            if(resultArray[i] === 'stroke-width="'){
-                currentStrokeWidth === 0 ? resultArray[i+1] = 0 : resultArray[i+1] = Number(resultArray[i+1]) * currentStrokeWidth
+            if (resultArray[i] === 'stroke-width="') {
+                currentStrokeWidth === 0 ? resultArray[i + 1] = 0 : resultArray[i + 1] = Number(resultArray[i + 1]) * currentStrokeWidth
+            }
+            if (String(resultArray[i]).includes('fill') && resultArray[i] !== 'fill="none"') {
+                if (name === 'nose') {
+                    resultArray[i] = 'fill="#' + avatar.find(item => item.name === 'face').color + '"'
+                } else if(avatar.find(item => item.name === name).color) {
+                    resultArray[i] = 'fill="#' + avatar.find(item => item.name === name).color + '"'
+                }
             }
         }
         /*отрисовка 2 глаза*/
@@ -223,6 +235,12 @@ function Comp() {
                 resultArray[2] = Number(resultArray[2]) + Number(avatar.find(item => item.name === 'pupil').distance * 4)
             }
         }
+
+        // for (let i = 0; i < resultArray.length; i++) {
+        //     let yyu = toString(resultArray[i]).indexOf('fill=')
+        //     console.log(resultArray[i])
+        // }
+
         return resultArray.join(' ')
     }
 
@@ -233,12 +251,20 @@ function Comp() {
     }
 
     const show = () => {
-        for (let itemAvatar of avatar){
+        for (let itemAvatar of avatar) {
             let maxRabge = arrParts.find(item => item.name === itemAvatar.name).children.length
             let minRabge = 1
-
             itemAvatar.id = Math.floor(Math.random() * (maxRabge - minRabge + 1)) + minRabge
         }
+        const maxColor = arrParts.find(item => item.name === 'face').colors.length
+        const randomColor = arrParts.find(item => item.name === 'face').colors[Math.floor(Math.random() * (maxColor -1))]
+        avatar.find(item => item.name === 'face').color = randomColor
+        setAvatar(avatar)
+        drawAvatar()
+    }
+
+    const setColor = (colorN) => {
+        avatar.find(item => item.name === arrParts[bodyPart].name).color = colorN
         setAvatar(avatar)
         drawAvatar()
     }
@@ -274,118 +300,154 @@ function Comp() {
                 </svg>
             </div>
             <div className={classes.tools}>
-                <div className={classes.flexSrt}>
-                    {arrParts.map((part, index) =>
-                        <div key={part.name}>
-                            <div
-                                className={classes.bodyPart}
-                                onClick={() => {
-                                    setBodyPart(index)
-                                    setRange(avatar.find(item => item.name === part.name).range)
-                                    setStrokeWidth(avatar.find(item => item.name === part.name).strokeWidth)
-                                    setOffsetY(avatar.find(item => item.name === part.name).offsetY)
-                                    setOffsetX(avatar.find(item => item.name === part.name).offsetX)
-                                    setDistance(avatar.find(item => item.name === part.name).distance)
-                                }
-                                }
-                            >
-                                {part.name}
+                <form action="#" method="#" id="form">
+                    <div className={classes.flexSrt}>
+                        {arrParts.map((part, index) =>
+                            <div key={part.name}>
+                                <div
+                                    className={classes.bodyPart}
+                                    onClick={() => {
+                                        setBodyPart(index)
+                                        setRange(avatar.find(item => item.name === part.name).range)
+                                        setStrokeWidth(avatar.find(item => item.name === part.name).strokeWidth)
+                                        setOffsetY(avatar.find(item => item.name === part.name).offsetY)
+                                        setOffsetX(avatar.find(item => item.name === part.name).offsetX)
+                                        setDistance(avatar.find(item => item.name === part.name).distance)
+                                    }
+                                    }
+                                >
+                                    {part.name}
+                                </div>
                             </div>
-                        </div>
-                    )}
-                </div>
-                <div className={classes.flexSrt}>
-                    {arrParts[bodyPart].children.map(
-                        (kid) =>
-                            <div
-                                key={kid.id}
-                                className={classes.bodyPartId}
-                                onClick={() => {
-                                    changeAvatarOption(kid.id, bodyPart)
-                                }}
+                        )}
+                    </div>
+                    <div className={classes.flexSrt}>
+                        {arrParts[bodyPart].children.map(
+                            (kid) =>
+                                <div
+                                    key={kid.id}
+                                    className={classes.bodyPartId}
+                                    onClick={() => {
+                                        changeAvatarOption(kid.id, bodyPart)
+                                    }}
+                                >
+                                    {kid.id}
+                                    <svg
+                                        className="miniSvg"
+                                        viewBox="50 50 250 250"
+                                        shapeRendering="geometricPrecision"
+                                        textRendering="geometricPrecision">
+                                    </svg>
+                                </div>
+                        )}
+                    </div>
+                    <div className={classes.flexSrt}>
+                        {avatar.find(item => item.name === arrParts[bodyPart].name).range === undefined
+                            ?
+                            <div></div>
+                            :
+                            <input type="range" value={range}
+                                   onChange={
+                                       (event) => {
+                                           setRange(event.target.value)
+                                           changeAvatar(event.target.value, 'range')
+                                       }
+                                   }
                             >
-                                {kid.id}
+                            </input>}
+                    </div>
+                    <div className={classes.flexSrt}>
+                        {avatar.find(item => item.name === arrParts[bodyPart].name).offsetX === undefined
+                            ?
+                            <div></div>
+                            :
+                            <div>
+                                {offsetX}
+                                <input type="range" min="-20" max="20" value={offsetX}
+                                       onChange={
+                                           (event) => {
+                                               setOffsetX(event.target.value)
+                                               changeAvatar(event.target.value, 'offsetX')
+                                           }
+                                       }
+                                >
+                                </input>
+                                {offsetY}
+                                <input type="range" min="-20" max="20" value={offsetY}
+                                       onChange={
+                                           (event) => {
+                                               setOffsetY(event.target.value)
+                                               changeAvatar(event.target.value, 'offsetY')
+                                           }
+                                       }
+                                >
+                                </input>
                             </div>
-                    )}
-                </div>
-                <div className={classes.flexSrt}>
-                    <input type="range" value={range}
-                           onChange={
-                               (event) => {
-                                   setRange(event.target.value)
-                                   changeAvatar(event.target.value,'range')
-                               }
-                           }
-                    >
-                    </input>
-                </div>
-                <div className={classes.flexSrt}>
-                    {avatar.find(item => item.name === arrParts[bodyPart].name).offsetX === undefined
-                        ?
-                        <div></div>
-                        :
-                        <div>
-                            {offsetX}
-                            <input type="range" min="-20" max="20" value={offsetX}
-                                   onChange={
-                                       (event) => {
-                                           setOffsetX(event.target.value)
-                                           changeAvatar(event.target.value,'offsetX')
+                        }
+                    </div>
+                    <div className={classes.flexSrt}>
+                        {avatar.find(item => item.name === arrParts[bodyPart].name).distance === undefined
+                            ?
+                            <div></div>
+                            :
+                            <div>
+                                {eyeDistance}
+                                <input type="range" min="17" max="40" value={eyeDistance}
+                                       onChange={
+                                           (event) => {
+                                               setDistance(event.target.value)
+                                               changeAvatar(event.target.value, 'distance')
+                                           }
                                        }
-                                   }
-                            >
-                            </input>
-                            {offsetY}
-                            <input type="range" min="-20" max="20" value={offsetY}
-                                   onChange={
-                                       (event) => {
-                                           setOffsetY(event.target.value)
-                                           changeAvatar(event.target.value,'offsetY')
+                                >
+                                </input>
+                            </div>
+                        }
+                    </div>
+                    <div className={classes.flexSrt}>
+                        {avatar.find(item => item.name === arrParts[bodyPart].name).strokeWidth === undefined
+                            ?
+                            <div></div>
+                            :
+                            <div>
+                                {'strokeWidth:' + strokeWidth}
+                                <input type="range" min="0" max="6" value={strokeWidth}
+                                       onChange={
+                                           (event) => {
+                                               setStrokeWidth(event.target.value)
+                                               changeAvatar(event.target.value, 'strokeWidth')
+                                           }
                                        }
-                                   }
+                                >
+                                </input>
+                            </div>
+                        }
+                    </div>
+                    <div className={classes.flexSrt}>
+                        {avatar.find(item => item.name === arrParts[bodyPart].name).color === undefined
+                            ?
+                            <div></div>
+                            :
+                            <div
+                                className={classes.flexSrt}
                             >
-                            </input>
-                        </div>
-                    }
-                </div>
-                <div className={classes.flexSrt}>
-                    {avatar.find(item => item.name === arrParts[bodyPart].name).distance === undefined
-                        ?
-                        <div></div>
-                        :
-                        <div>
-                            {eyeDistance}
-                            <input type="range" min="17" max="40" value={eyeDistance}
-                                   onChange={
-                                       (event) => {
-                                           setDistance(event.target.value)
-                                           changeAvatar(event.target.value,'distance')
-                                       }
-                                   }
-                            >
-                            </input>
-                        </div>
-                    }
-                </div>
-                <div className={classes.flexSrt}>
-                    {avatar.find(item => item.name === arrParts[bodyPart].name).strokeWidth === undefined
-                        ?
-                        <div></div>
-                        :
-                        <div>
-                            {'strokeWidth:'+ strokeWidth}
-                            <input type="range" min="0" max="6" value={strokeWidth}
-                                   onChange={
-                                       (event) => {
-                                           setStrokeWidth(event.target.value)
-                                           changeAvatar(event.target.value,'strokeWidth')
-                                       }
-                                   }
-                            >
-                            </input>
-                        </div>
-                    }
-                </div>
+                                {arrParts[bodyPart].colors.map(
+                                    (color) =>
+                                        <div
+                                            key={color}
+                                            className={classes.bodyPart}
+                                            style={{ background: '#' + color }}
+                                            onClick={() => {
+                                                setColor(color)
+                                            }}
+                                        >
+                                            {color}
+                                        </div>
+                                )}
+                            </div>
+                        }
+                    </div>
+                </form>
             </div>
         </div>
     )
